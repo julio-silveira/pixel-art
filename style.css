@@ -1,21 +1,29 @@
-.color{
-    border: 1px solid black;
-    height: 40px;
-    width: 40px;
-    display: inline-block;
+.color {
+  border: 1px solid black;
+  height: 40px;
+  width: 40px;
+  display: inline-block;
 }
 
-#color-one{
-    background-color: black;
+#color-one {
+  background-color: black;
 }
 
-#color-two{
-    background-color: aqua;
+#color-two {
+  background-color: aqua;
 }
-#color-three{
-    background-color: green;
+#color-three {
+  background-color: green;
 }
-#color-four{
-    background-color: red;
+#color-four {
+  background-color: red;
 }
 
+.pixel {
+  border: 1px solid black;
+  height: 40px;
+  width: 40px;
+  display: inline-block;
+  margin: 1px;
+  background-color: white;
+}
