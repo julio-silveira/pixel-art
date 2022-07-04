@@ -1,10 +1,6 @@
 const colorPallete = document.getElementById('color-palette');
 const pixelBoard = document.getElementById('pixel-board');
-const colorOne = colorPallete.children[0];
-const colorTwo = colorPallete.children[1];
-const colorThree = colorPallete.children[2];
-const colorFour = colorPallete.children[3];
-let selectedColor = colorOne;
+let selectedColor = colorPallete.children[0];
 
 function generatePixels(rows, columns) {
   for (let index = 0; index < rows; index += 1) {
@@ -27,7 +23,7 @@ function generateColors() {
 }
 
 function setColors() {
-  colorOne.style.backgroundColor = 'Black';
+  selectedColor.style.backgroundColor = 'Black';
   selectedColor.classList.add('selected');
   for (let index = 1; index < 4; index += 1) {
     colorPallete.children[index].style.backgroundColor = generateColors();
@@ -36,3 +32,7 @@ function setColors() {
 
 generatePixels(5, 5);
 document.onload = setColors();
+
+colorPallete.children[0].addEventListener('click', function () {
+  console.log(this);
+});
