@@ -30,9 +30,35 @@ function setColors() {
   }
 }
 
-generatePixels(5, 5);
-document.onload = setColors();
+function selectColor() {
+  for (let cpindex = 0; cpindex < 4; cpindex += 1) {
+    colorPallete.children[cpindex].addEventListener('click', function () {
+      selectedColor.classList.remove('selected');
+      selectedColor = colorPallete.children[cpindex];
+      selectedColor.classList.add('selected');
+      console.log(this);
+    });
+  }
+}
 
-colorPallete.children[0].addEventListener('click', function () {
-  console.log(this);
-});
+generatePixels(5, 5);
+
+function paintPixel() {
+  const pixelRowsCount = pixelBoard.children.length;
+  const pixelColsCount = pixelBoard.children[0].children.length;
+  const pixelCount = pixelRowsCount * pixelColsCount;
+
+  for (let crindex = 0; crindex < pixelRowsCount; crindex += 1) {
+    for (let ccindex = 0; ccindex < pixelColsCount; ccindex += 1) {
+      let selectedPixel = pixelBoard.children[crindex].children[ccindex];
+      selectedPixel.addEventListener('click', function () {
+        selectedPixel.style.backgroundColor =
+          selectedColor.style.backgroundColor;
+        console.log(this);
+      });
+    }
+  }
+}
+document.onload = setColors();
+selectColor();
+paintPixel();
