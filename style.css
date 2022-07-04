@@ -1,0 +1,21 @@
+.color{
+    border: 1px solid black;
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+}
+
+#color-one{
+    background-color: black;
+}
+
+#color-two{
+    background-color: aqua;
+}
+#color-three{
+    background-color: green;
+}
+#color-four{
+    background-color: red;
+}
+
