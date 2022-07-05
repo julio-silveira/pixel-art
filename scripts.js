@@ -8,7 +8,6 @@ const changeButton = document.getElementById('generate-board');
 function generatePixels(rows, columns) {
   for (let index = 0; index < rows; index += 1) {
     const r = document.createElement('div');
-    r.className = 'row';
     for (let index2 = 0; index2 < columns; index2 += 1) {
       const c = document.createElement('div');
       c.className = 'pixel';
@@ -26,10 +25,8 @@ function generateColors() {
   const red = Math.random() * 255;
   const green = Math.random() * 255;
   const blue = Math.random() * 255;
-  const rgb = 'rgb(' + red + ',' + green + ',' + blue + ')';
-  return rgb;
+  return `rgb(${red},${green},${blue})`;
 }
-
 function setColors() {
   selectedColor.style.backgroundColor = 'Black';
   selectedColor.classList.add('selected');
@@ -37,40 +34,43 @@ function setColors() {
     colorPallete.children[index].style.backgroundColor = generateColors();
   }
 }
-function getColor() {
+function changeSelection(num) {
   selectedColor.classList.remove('selected');
-  selectedColor = colorPallete.children[cpindex];
+  selectedColor = colorPallete.children[num];
   selectedColor.classList.add('selected');
 }
 
 function selectColor() {
-  for (let cpindex = 0; cpindex < 4; cpindex += 1) {
-    colorPallete.children[cpindex].addEventListener(
-      'click',
-      function getColor() {
-        selectedColor.classList.remove('selected');
-        selectedColor = colorPallete.children[cpindex];
-        selectedColor.classList.add('selected');
-      }
-    );
+  for (let i = 0; i < 4; i += 1) {
+    colorPallete.children[i].addEventListener('click', () => {
+      changeSelection(i);
+    });
   }
 }
 function removeRows() {
   pixelRowsCount = pixelBoard.children.length;
   pixelColsCount = pixelBoard.children[0].children.length;
-
   for (let removeIndex = 0; removeIndex < pixelRowsCount; removeIndex += 1) {
     pixelBoard.removeChild(pixelBoard.lastChild);
   }
 }
-
 setColors();
-
-changeButton.addEventListener('click', function changeSize() {
-  let newSize = parseInt(size.value);
-  if (newSize === NaN) {
-    alert('Board inválido!');
-  } else if (newSize <= 5) {
+// prettier-ignore
+function paintPixel() {
+  pixelRowsCount = pixelBoard.children.length;
+  pixelColsCount = pixelBoard.children[0].children.length;
+  for (let crindex = 0; crindex < pixelRowsCount; crindex += 1) {
+    for (let ccindex = 0; ccindex < pixelColsCount; ccindex += 1) {
+      const pixel = pixelBoard.children[crindex].children[ccindex];
+      pixel.addEventListener('click', () => {
+        pixel.style.backgroundColor = document.querySelector('.selected').style.backgroundColor;
+      });
+    }
+  }
+}
+changeButton.addEventListener('click', () => {
+  const newSize = parseInt(size.value, 10);
+  if (newSize <= 5) {
     removeRows();
     generatePixels(5, 5);
     paintPixel();
@@ -84,34 +84,15 @@ changeButton.addEventListener('click', function changeSize() {
     paintPixel();
   } else alert('Board inválido!');
 });
-
-function paintPixel() {
-  pixelRowsCount = pixelBoard.children.length;
-  pixelColsCount = pixelBoard.children[0].children.length;
-
-  for (let crindex = 0; crindex < pixelRowsCount; crindex += 1) {
-    for (let ccindex = 0; ccindex < pixelColsCount; ccindex += 1) {
-      let selectedPixel = pixelBoard.children[crindex].children[ccindex];
-
-      selectedPixel.addEventListener('click', function paint() {
-        selectedPixel.style.backgroundColor =
-          selectedColor.style.backgroundColor;
-      });
-    }
-  }
-}
-
 function clearBoard() {
-  clearButton.addEventListener('click', function clear() {
-    for (let rindex = 0; rindex < pixelRowsCount; rindex += 1) {
-      for (let cindex = 0; cindex < pixelColsCount; cindex += 1) {
-        pixelBoard.children[rindex].children[cindex].style.backgroundColor =
-          'white';
+  clearButton.addEventListener('click', () => {
+    for (let ri = 0; ri < pixelRowsCount; ri += 1) {
+      for (let ci = 0; ci < pixelColsCount; ci += 1) {
+        pixelBoard.children[ri].children[ci].style.backgroundColor = 'white';
       }
     }
   });
 }
-
 selectColor();
 paintPixel();
 clearBoard();
