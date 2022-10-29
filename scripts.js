@@ -8,6 +8,7 @@ const changeButton = document.getElementById('generate-board');
 function generatePixels(rows, columns) {
   for (let index = 0; index < rows; index += 1) {
     const r = document.createElement('div');
+    r.className = 'rows';
     for (let index2 = 0; index2 < columns; index2 += 1) {
       const c = document.createElement('div');
       c.className = 'pixel';
@@ -55,7 +56,7 @@ function removeRows() {
   }
 }
 setColors();
-// prettier-ignore
+
 function paintPixel() {
   pixelRowsCount = pixelBoard.children.length;
   pixelColsCount = pixelBoard.children[0].children.length;
@@ -68,20 +69,21 @@ function paintPixel() {
     }
   }
 }
+
+function handleSize(cols) {
+  removeRows();
+  generatePixels(cols, cols);
+  paintPixel();
+}
+
 changeButton.addEventListener('click', () => {
   const newSize = parseInt(size.value, 10);
   if (newSize <= 5) {
-    removeRows();
-    generatePixels(5, 5);
-    paintPixel();
+    handleSize(5);
   } else if (newSize >= 50) {
-    removeRows();
-    generatePixels(50, 50);
-    paintPixel();
+    handleSize(50);
   } else if (newSize > 5 && newSize < 50) {
-    removeRows();
-    generatePixels(newSize, newSize);
-    paintPixel();
+    handleSize(newSize);
   } else alert('Board inválido!');
 });
 function clearBoard() {
@@ -93,6 +95,7 @@ function clearBoard() {
     }
   });
 }
+
 selectColor();
 paintPixel();
 clearBoard();

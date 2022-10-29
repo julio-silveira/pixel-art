@@ -2,18 +2,30 @@
 <html>
 
 <head>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 	<link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="/img/logoPixelArt.png">
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width" />
-	<title>Pixel Art</title>
+	<title>Pixels Art</title>
 </head>
 
-<body>
+<body class="container-fluid d-flex flex-column align-items-center justify-content-between">
 
-	<header>
-		<h1 id="title">Paleta de Cores</h1>
+	<header class="header">
+    <img class="ms-2" width=150px src="https://theme.zdassets.com/theme_assets/9633455/ecf228e8c15da1a8bd07f574e675a0ac59330968.png" alt="logoTrybe">
+    <div class="d-flex align-items-center">
+    <img width= 32px src="/img/logoPixelArt.png" alt="logo">
+		<h1 class="display-6">Arte com Pixels</h1>
+  </div>
+  <nav class="me-2">
+    <a class="btn btn-outline-primary" href="https://julio-silveira.github.io/" >Meu Portifólio</a>
+  </nav>
 	</header>
 
+  
+	<main class="d-flex flex-column align-items-center" >
+		<h1 class="display-6" id="title">Paleta de Cores</h1>
 	<section id="color-palette">
 		<div class="color"></div>
 		<div class="color"></div>
@@ -21,20 +33,29 @@
 		<div class="color"></div>
 	</section>
 
-	<section id = "mid-section"> 
-		<input type="number" min="1" id="board-size">
-		<button id="generate-board">
-		VQV
-
-		</button>
-		<button id="clear-board">
-			Limpar</button>
-
+	<section class="d-flex flex-column align-items-center my-3" id = "mid-section"> 
+		<label class="input-group mb-2">
+      <span class="input-group-text">Pixels</span>
+		  <input class="form-control" type="number" min="1" id="board-size">
+      <button id="generate-board" class="btn btn-primary">
+        VQV
+      </button>
+		</label>
+   
+		<button id="clear-board" class="btn btn-primary">
+      Limpar</button>
+  
 	</section>
 
 	<section id="pixel-board">
 	</section>
+  
+	</main>
 
+<footer>
+  <p> Feito por Júlio Silveira durante o curso de desenvolvimento Web na Trybe</p> 
+</footer>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 	<script src="scripts.js"></script>
 </body>
 
